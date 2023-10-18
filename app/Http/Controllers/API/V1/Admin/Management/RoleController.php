@@ -8,6 +8,8 @@ use App\Http\Requests\V1\Admin\Management\Roles\UpdateRoleRequest;
 use App\Http\Resources\V1\Admin\Management\Roles\RoleResource;
 use App\Http\Resources\V1\Admin\Management\Roles\RoleResourceCollection;
 use App\Services\Admin\Management\RoleService;
+use Illuminate\Support\Facades\Auth;
+use Iqbalatma\LaravelJwtAuthentication\JWT;
 use Iqbalatma\LaravelServiceRepo\Exceptions\EmptyDataException;
 use Iqbalatma\LaravelUtils\APIResponse;
 

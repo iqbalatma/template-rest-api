@@ -28,7 +28,7 @@ Route::prefix("v1")->name("v1.")->group(function () {
         Route::post("", "authenticate")->name("authenticate");
     });
 
-    Route::middleware("auth:api")->group(function () {
+    Route::middleware("auth")->group(function () {
         Route::prefix("admin")->name("admin.")->group(function () {
             Route::prefix("management")->name("management.")->group(function () {
                 Route::prefix("users")->name("users.")->controller(UserController::class)->group(function () {

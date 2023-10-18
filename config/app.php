@@ -162,6 +162,7 @@ return [
         Iqbalatma\LaravelServiceRepo\ServiceRepoProvider::class,
         Iqbalatma\LaravelJwtAuth\Providers\LaravelServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        Iqbalatma\LaravelJwtAuthentication\LaravelJWTAuthenticationProvider::class,
 
         /*
          * Application Service Providers...

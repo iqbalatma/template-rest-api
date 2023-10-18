@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Services\Auth;
+
 use App\Contracts\Abstracts\Services\BaseService;
+use Illuminate\Support\Facades\Auth;
 use Iqbalatma\LaravelJwtAuth\Services\JWTService;
 use Throwable;
 
@@ -19,12 +21,19 @@ class AuthenticationService extends BaseService
      * @return array
      * @throws Throwable
      */
-    public function authenticate(array $credentials):array
+    public function authenticate(array $credentials): array
     {
-        $jwtService = new JWTService();
-        return [
-          "access_token" => $jwtService->invokeAccessToken($credentials),
-          "refresh_token" => $jwtService->invokeRefreshToken()
-        ];
+        $user = Auth::attempt($credentials);
+        ddapi(Auth::authenticate());
+//        ddapi(Auth::user());
+//        ddapi($user);
+////        ddapi($user);
+////        ddapi("s");
+//
+//        $jwtService = new JWTService();
+//        return [
+//            "access_token" => $jwtService->invokeAccessToken($credentials),
+//            "refresh_token" => $jwtService->invokeRefreshToken()
+//        ];
     }
 }

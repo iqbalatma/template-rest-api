@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'api',
+        'guard' => 'jwt-iqbal2',
         'passwords' => 'users',
     ],
 
@@ -44,6 +44,10 @@ return [
             'driver' => 'jwt',
             'provider' => 'users',
         ],
+        "jwt-iqbal2" => [
+            "driver" => "jwt-iqbal",
+            "provider" => "users"
+        ]
     ],
 
     /*
