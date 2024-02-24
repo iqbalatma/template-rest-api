@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dfa8f8a43ac36612934db66b846826cb",
+    "content-hash": "f4219132fe1a86d4e1912d98101ad87f",
     "packages": [
         {
             "name": "archtechx/enums",
@@ -1153,6 +1153,50 @@
                 }
             ],
             "time": "2023-12-03T19:50:20+00:00"
+        },
+        {
+            "name": "iqbalatma/laravel-audit",
+            "version": "0.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/iqbalatma/laravel-audit.git",
+                "reference": "b46ea1d831a9d2c25e8060800b8c863f19ba187c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/iqbalatma/laravel-audit/zipball/b46ea1d831a9d2c25e8060800b8c863f19ba187c",
+                "reference": "b46ea1d831a9d2c25e8060800b8c863f19ba187c",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Iqbalatma\\LaravelAudit\\Providers\\LaravelAuditServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helper.php"
+                ],
+                "psr-4": {
+                    "Iqbalatma\\LaravelAudit\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "iqbalatma",
+                    "email": "iqbalatma@gmail.com"
+                }
+            ],
+            "description": "Use to auditing data changes",
+            "support": {
+                "issues": "https://github.com/iqbalatma/laravel-audit/issues",
+                "source": "https://github.com/iqbalatma/laravel-audit/tree/0.0.4"
+            },
+            "time": "2024-02-24T09:08:50+00:00"
         },
         {
             "name": "iqbalatma/laravel-jwt-authentication",

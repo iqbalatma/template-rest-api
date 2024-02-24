@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use App\Services\V1\ResponseCode;
 use Exception;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\UnauthorizedException;
 use Illuminate\Validation\ValidationException;
@@ -77,6 +78,18 @@ class Handler extends ExceptionHandler
                     null,
                     $e->getMessage(),
                     responseCode: ResponseCode::ERR_FORBIDDEN(),
+                    exception: $e
+                );
+            }
+        });
+
+
+        $this->renderable(function (AuthenticationException $e) {
+            if (request()->expectsJson()) {
+                return new APIResponse(
+                    null,
+                    $e->getMessage(),
+                    responseCode: ResponseCode::ERR_UNAUTHENTICATED(),
                     exception: $e
                 );
             }

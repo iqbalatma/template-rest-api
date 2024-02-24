@@ -12,6 +12,10 @@ class ResponseCode extends \Iqbalatma\LaravelUtils\ResponseCode
 {
     protected const ERR_NOT_FOUND = "ERR_NOT_FOUND";
 
+
+    /**
+     * @return void
+     */
     protected function mapHttpCode(): void
     {
         $this->httpCode = match ($this->name) {
