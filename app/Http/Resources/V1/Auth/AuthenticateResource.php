@@ -23,6 +23,13 @@ class AuthenticateResource extends JsonResource
             "lastname" => $user->lastname,
             "fullname" => $user->fullname,
             "email" => $user->email,
+            "phone_number" => $user->phone_number,
+            "address" => $user->profile?->address,
+            "gender" => $user->profile?->gender,
+            "avatar" => $user->profile?->avatar,
+            "birth_place" => $user->profile?->birth_place,
+            "birth_date" => $user->profile?->birth_date,
+            "created_at" => $user->created_at,
             "token" => $this["token"]
         ];
     }
