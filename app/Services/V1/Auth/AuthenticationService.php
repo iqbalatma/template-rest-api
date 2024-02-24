@@ -9,13 +9,6 @@ use Throwable;
 
 class AuthenticationService extends BaseService
 {
-    protected $repository;
-
-    public function __construct()
-    {
-        // $this->repository
-    }
-
     /**
      * @param array $credentials
      * @return array

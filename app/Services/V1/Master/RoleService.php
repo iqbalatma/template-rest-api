@@ -7,14 +7,6 @@ use Illuminate\Database\Eloquent\Collection;
 
 class RoleService extends BaseService
 {
-    protected $repository;
-
-    public function __construct()
-    {
-        // $this->repository
-    }
-
-
     /**
      * @return Collection
      */

@@ -16,9 +16,12 @@ use Iqbalatma\LaravelServiceRepo\Exceptions\EmptyDataException;
 class RoleService extends BaseService
 {
     protected $repository;
+    protected Role $role;
+    protected array $roleBeforeUpdate;
 
     public function __construct()
     {
+        parent::__construct();
         $this->repository = new RoleRepository();
     }
 
@@ -50,11 +53,12 @@ class RoleService extends BaseService
         $requestedData["is_mutable"] = true;
         DB::beginTransaction();
         /** @var Role $role */
-        $role = RoleRepository::addNewData($requestedData);
-        $this->syncRolePermission($requestedData, $role);
+        $this->role = RoleRepository::addNewData($requestedData);
+        $this->syncRolePermission($requestedData, $this->role)
+            ->addNewDataAudit(); #process audit
         DB::commit();
 
-        return $role;
+        return $this->role;
     }
 
 
@@ -68,20 +72,22 @@ class RoleService extends BaseService
     {
         $this->checkData($id);
         DB::beginTransaction();
-        $role = $this->getServiceEntity();
+        $this->role = $this->getServiceEntity();
+        $this->roleBeforeUpdate = $this->role->toArray();
 
-        if ($role->name === \App\Enums\Role::SUPERADMIN->value){
-            throw new ForbiddenActionException("Role " . $role->name . " cannot be updated");
+        if ($this->role->name === \App\Enums\Role::SUPERADMIN->value){
+            throw new ForbiddenActionException("Role {$this->role->name} cannot be updated");
         }
 
-        if ($role->is_mutable) {
-            $role->fill($requestedData)->save();
+        if ($this->role->is_mutable) {
+            $this->role->fill($requestedData)->save();
         }
 
-        $this->syncRolePermission($requestedData, $role);
+        $this->syncRolePermission($requestedData, $this->role)
+            ->updateDataByIdAudit();
         DB::commit();
 
-        return $role;
+        return $this->role;
     }
 
     /**
@@ -105,12 +111,44 @@ class RoleService extends BaseService
     /**
      * @param array $requestedData
      * @param Role $role
-     * @return void
+     * @return RoleService
      */
-    private function syncRolePermission(array &$requestedData, Role $role): void
+    private function syncRolePermission(array &$requestedData, Role $role): self
     {
         if (isset($requestedData["permission_ids"])) {
             $role->permissions()->sync($requestedData["permission_ids"]);
         }
+
+        return $this;
+    }
+
+
+    /**
+     * @return void
+     */
+    private function addNewDataAudit():void
+    {
+        $this->auditService->setAction("ADD_NEW_DATA_ROLE")
+            ->setMessage("Add single data role")
+            ->setObject($this->role)
+            ->log(
+                ["role" => null],
+                ["role" => $this->role],
+            );
+    }
+
+
+    /**
+     * @return void
+     */
+    private function updateDataByIdAudit():void
+    {
+        $this->auditService->setAction("UPDATE_DATA_ROLE")
+            ->setMessage("Update single data role")
+            ->setObject($this->role)
+            ->log(
+                ["role" => array_intersect_key($this->roleBeforeUpdate, $this->role->getChanges())],
+                ["role" => $this->role->getChanges()],
+            );
     }
 }
