@@ -18,6 +18,7 @@ class RoleService extends BaseService
     protected $repository;
     protected Role $role;
     protected array $roleBeforeUpdate;
+    protected array $permissionBeforeUpdate;
 
     public function __construct()
     {
@@ -50,6 +51,7 @@ class RoleService extends BaseService
      */
     public function addNewData(array $requestedData): Role
     {
+        $this->setRequestedData($requestedData);
         $requestedData["is_mutable"] = true;
         DB::beginTransaction();
         /** @var Role $role */
@@ -70,12 +72,13 @@ class RoleService extends BaseService
      */
     public function updateDataById(string $id, array $requestedData): Role
     {
-        $this->checkData($id);
+        $this->setRequestedData($requestedData)->checkData($id);
         DB::beginTransaction();
         $this->role = $this->getServiceEntity();
         $this->roleBeforeUpdate = $this->role->toArray();
+        $this->permissionBeforeUpdate = $this->role->permissions->toArray();
 
-        if ($this->role->name === \App\Enums\Role::SUPERADMIN->value){
+        if ($this->role->name === \App\Enums\Role::SUPERADMIN->value) {
             throw new ForbiddenActionException("Role {$this->role->name} cannot be updated");
         }
 
@@ -100,7 +103,7 @@ class RoleService extends BaseService
         $this->checkData($id);
         $role = $this->getServiceEntity();
 
-        if ($role->name === \App\Enums\Role::SUPERADMIN->value || !$role->is_mutable){
+        if ($role->name === \App\Enums\Role::SUPERADMIN->value || !$role->is_mutable) {
             throw new ForbiddenActionException("Role " . $role->name . " cannot be deleted");
         }
 
@@ -117,6 +120,7 @@ class RoleService extends BaseService
     {
         if (isset($requestedData["permission_ids"])) {
             $role->permissions()->sync($requestedData["permission_ids"]);
+            $role->refresh();
         }
 
         return $this;
@@ -126,14 +130,14 @@ class RoleService extends BaseService
     /**
      * @return void
      */
-    private function addNewDataAudit():void
+    private function addNewDataAudit(): void
     {
         $this->auditService->setAction("ADD_NEW_DATA_ROLE")
             ->setMessage("Add single data role")
             ->setObject($this->role)
             ->log(
-                ["role" => null],
-                ["role" => $this->role],
+                ["role" => null, "permission" => null],
+                ["role" => $this->role->withoutRelations("permissions"), "permission" => $this->role->permissions],
             );
     }
 
@@ -141,14 +145,13 @@ class RoleService extends BaseService
     /**
      * @return void
      */
-    private function updateDataByIdAudit():void
+    private function updateDataByIdAudit(): void
     {
         $this->auditService->setAction("UPDATE_DATA_ROLE")
             ->setMessage("Update single data role")
             ->setObject($this->role)
-            ->log(
-                ["role" => array_intersect_key($this->roleBeforeUpdate, $this->role->getChanges())],
-                ["role" => $this->role->getChanges()],
-            );
+            ->addBeforeAfter("role", $this->roleBeforeUpdate, $this->role)
+            ->addBeforeAfter("permission", collect($this->permissionBeforeUpdate), $this->role->permissions)
+            ->log();
     }
 }
