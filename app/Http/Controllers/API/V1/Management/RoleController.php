@@ -50,7 +50,7 @@ class RoleController extends Controller
      */
     public function show(RoleService $service, string $id): APIResponse
     {
-        $response = $service->getDataBy($id);
+        $response = $service->getDataById($id);
 
         return new APIResponse(
             new RoleResource($response),

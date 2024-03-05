@@ -39,7 +39,7 @@ class RoleService extends BaseService
      * @return Role
      * @throws EmptyDataException
      */
-    public function getDataBy(string $id): Role
+    public function getDataById(string $id): Role
     {
         $this->checkData($id);
         return $this->getServiceEntity();
