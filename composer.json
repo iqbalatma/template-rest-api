@@ -10,7 +10,7 @@
         "guzzlehttp/guzzle": "^7.2",
         "iqbalatma/laravel-audit": "^0.0.5",
         "iqbalatma/laravel-jwt-authentication": "^1.4.5",
-        "iqbalatma/laravel-service-repo": "^3.3",
+        "iqbalatma/laravel-service-repo": "^3.3.12",
         "iqbalatma/laravel-utils": "^1.4",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.2",

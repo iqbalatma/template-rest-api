@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a4b1f1c72dc3e70bdbb54b33ba68354e",
+    "content-hash": "a9895dcd9c05cdbefc859dd43e95c647",
     "packages": [
         {
             "name": "archtechx/enums",
@@ -1245,16 +1245,16 @@
         },
         {
             "name": "iqbalatma/laravel-service-repo",
-            "version": "3.3.10",
+            "version": "3.3.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/iqbalatma/laravel-service-repo.git",
-                "reference": "7577ac8a042a978f2d3125855f444c6d5b098531"
+                "reference": "2a3e733183d7153ca3329b4da578301380c2a9b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/iqbalatma/laravel-service-repo/zipball/7577ac8a042a978f2d3125855f444c6d5b098531",
-                "reference": "7577ac8a042a978f2d3125855f444c6d5b098531",
+                "url": "https://api.github.com/repos/iqbalatma/laravel-service-repo/zipball/2a3e733183d7153ca3329b4da578301380c2a9b7",
+                "reference": "2a3e733183d7153ca3329b4da578301380c2a9b7",
                 "shasum": ""
             },
             "require": {
@@ -1283,9 +1283,9 @@
             "description": "Project for extend base class on laravel with service repo pattern",
             "support": {
                 "issues": "https://github.com/iqbalatma/laravel-service-repo/issues",
-                "source": "https://github.com/iqbalatma/laravel-service-repo/tree/3.3.10"
+                "source": "https://github.com/iqbalatma/laravel-service-repo/tree/3.3.12"
             },
-            "time": "2023-12-21T11:53:06+00:00"
+            "time": "2024-03-05T17:09:46+00:00"
         },
         {
             "name": "iqbalatma/laravel-utils",
@@ -1332,16 +1332,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v10.46.0",
+            "version": "v10.47.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "5e95946a8283a8d5c015035793f9c61c297e937f"
+                "reference": "fce29b8de62733cdecbe12e3bae801f83fff2ea4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/5e95946a8283a8d5c015035793f9c61c297e937f",
-                "reference": "5e95946a8283a8d5c015035793f9c61c297e937f",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/fce29b8de62733cdecbe12e3bae801f83fff2ea4",
+                "reference": "fce29b8de62733cdecbe12e3bae801f83fff2ea4",
                 "shasum": ""
             },
             "require": {
@@ -1534,7 +1534,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-02-27T16:46:54+00:00"
+            "time": "2024-03-05T15:18:36+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -6306,16 +6306,16 @@
         },
         {
             "name": "laravel/sail",
-            "version": "v1.28.1",
+            "version": "v1.28.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sail.git",
-                "reference": "f84e444a3dbc1811803cd2a050bdd54ff6f5eef8"
+                "reference": "057777403b8ab79222dcc04983beaab10b6de6a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/f84e444a3dbc1811803cd2a050bdd54ff6f5eef8",
-                "reference": "f84e444a3dbc1811803cd2a050bdd54ff6f5eef8",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/057777403b8ab79222dcc04983beaab10b6de6a0",
+                "reference": "057777403b8ab79222dcc04983beaab10b6de6a0",
                 "shasum": ""
             },
             "require": {
@@ -6364,7 +6364,7 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
-            "time": "2024-02-23T00:24:47+00:00"
+            "time": "2024-03-04T14:58:29+00:00"
         },
         {
             "name": "mockery/mockery",
