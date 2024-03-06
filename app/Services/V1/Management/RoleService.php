@@ -35,11 +35,11 @@ class RoleService extends BaseService
     }
 
     /**
-     * @param string $id
+     * @param string|int $id
      * @return Role
      * @throws EmptyDataException
      */
-    public function getDataById(string $id): Role
+    public function getDataById(string|int $id): Role
     {
         $this->checkData($id);
         return $this->getServiceEntity();
@@ -65,12 +65,13 @@ class RoleService extends BaseService
 
 
     /**
-     * @param string $id
+     * @param string|int $id
      * @param array $requestedData
      * @return Role
-     * @throws EmptyDataException|ForbiddenActionException
+     * @throws EmptyDataException
+     * @throws ForbiddenActionException
      */
-    public function updateDataById(string $id, array $requestedData): Role
+    public function updateDataById(string|int $id, array $requestedData): Role
     {
         $this->setRequestedData($requestedData)->checkData($id);
         DB::beginTransaction();
@@ -94,11 +95,12 @@ class RoleService extends BaseService
     }
 
     /**
-     * @param string $id
+     * @param string|int $id
      * @return int
-     * @throws EmptyDataException|ForbiddenActionException
+     * @throws EmptyDataException
+     * @throws ForbiddenActionException
      */
-    public function deleteDataById(string $id): int
+    public function deleteDataById(string|int $id): int
     {
         $this->checkData($id);
         $role = $this->getServiceEntity();

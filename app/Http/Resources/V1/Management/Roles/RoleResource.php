@@ -2,11 +2,13 @@
 
 namespace App\Http\Resources\V1\Management\Roles;
 
+use App\Models\Permission;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * @mixin \App\Models\Role
+ * @mixin Role
  */
 class RoleResource extends JsonResource
 {
@@ -22,7 +24,9 @@ class RoleResource extends JsonResource
             "name" => $this->name,
             "guard_name" => $this->guard_name,
             "is_mutable" => $this->is_mutable,
-            "permissions" => $this->getAllPermissions()
+            "permissions" => $this->getAllPermissions()->map(function (Permission $permission) {
+                return $permission->name;
+            })
         ];
     }
 }
